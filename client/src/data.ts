@@ -118,6 +118,39 @@ export const MISSIONS_CRIANDO_SOLUCOES = [
   },
 ];
 
+export const MISSIONS_MEU_PRIMEIRO_APP = [
+  {
+    id: 1,
+    title: "Defina a ideia do seu app",
+    description: "Escolha um problema para resolver e dê um nome ao seu aplicativo. Toda grande invenção começa com uma ideia!",
+    status: "locked" as const,
+  },
+  {
+    id: 2,
+    title: "Quem vai usar seu app?",
+    description: "Defina o público-alvo e o objetivo principal do seu aplicativo. Para quem você está criando?",
+    status: "locked" as const,
+  },
+  {
+    id: 3,
+    title: "Liste as funcionalidades",
+    description: "Pense nas funcionalidades essenciais que seu app precisa ter para resolver o problema.",
+    status: "locked" as const,
+  },
+  {
+    id: 4,
+    title: "Desenhe as telas do app",
+    description: "Estruture as telas principais do seu aplicativo: tela inicial, tela principal e tela de resultado.",
+    status: "locked" as const,
+  },
+  {
+    id: 5,
+    title: "Monte o fluxo principal",
+    description: "Conecte as telas e defina o caminho que o usuário percorre do início ao fim do seu app.",
+    status: "locked" as const,
+  },
+];
+
 export const BADGES = [
   { id: 1, icon: "Brain" as const, label: "Explorador de IA", earned: true, color: "#10B981" },
   { id: 2, icon: "MessageSquare" as const, label: "Mestre dos Prompts", earned: false, progress: 60, color: "#F97316" },

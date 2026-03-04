@@ -30,22 +30,13 @@ function TrackCardLarge({ track, index }: { track: typeof TRACKS[0]; index: numb
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
       onClick={() => {
-        if (track.locked) {
-          // Trilha Criando Soluções: navegar para sua tela mesmo bloqueada
-          if (track.id === 3) {
-            setLocation("/trilha-solucoes");
-          } else {
-            toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
-          }
-        } else {
-          if (track.id === 2) {
-            setLocation("/trilha-detalhe");
-          } else if (track.id === 3) {
-            setLocation("/trilha-solucoes");
-          } else {
-            setLocation("/trilha-detalhe");
-          }
-        }
+        const routeMap: Record<number, string> = {
+          1: "/trilha-detalhe",
+          2: "/trilha-detalhe",
+          3: "/trilha-solucoes",
+          4: "/trilha-meu-app",
+        };
+        setLocation(routeMap[track.id] || "/trilha-detalhe");
       }}
     >
       {/* Icon */}

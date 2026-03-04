@@ -133,19 +133,13 @@ function TrackCard({ track, index }: { track: typeof TRACKS[0]; index: number })
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
       onClick={() => {
-        if (track.locked) {
-          if (track.id === 3) {
-            setLocation("/trilha-solucoes");
-          } else {
-            toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
-          }
-        } else {
-          if (track.id === 3) {
-            setLocation("/trilha-solucoes");
-          } else {
-            setLocation("/trilha-detalhe");
-          }
-        }
+        const routeMap: Record<number, string> = {
+          1: "/trilha-detalhe",
+          2: "/trilha-detalhe",
+          3: "/trilha-solucoes",
+          4: "/trilha-meu-app",
+        };
+        setLocation(routeMap[track.id] || "/trilha-detalhe");
       }}
     >
       <div className="absolute top-0 left-0 right-0 h-1 rounded-t-xl" style={{ background: track.locked ? "#374151" : `linear-gradient(90deg, ${track.color}, ${track.color}88)` }} />
