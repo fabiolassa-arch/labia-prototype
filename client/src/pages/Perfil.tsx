@@ -10,10 +10,14 @@ import { toast } from "sonner";
 import {
   CheckCircle2, Rocket, BookOpen, Clock, ChevronRight, ChevronLeft,
   User, Bell, Shield, LogOut, Pencil, Eye, EyeOff, Lock, Mail, Save, X,
+  Brain, MessageSquare, Settings,
 } from "lucide-react";
-import { IMAGES, USER_PROFILE } from "@/data";
+import { IMAGES, USER_PROFILE, BADGES } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
+import BadgeModal from "@/components/BadgeModal";
+
+const BADGE_ICON_MAP: Record<string, any> = { Brain, MessageSquare, Settings, Rocket };
 
 const STATS = [
   { label: "Missões Concluídas", value: USER_PROFILE.missionsCompleted, icon: CheckCircle2, color: "#10B981" },
@@ -22,12 +26,7 @@ const STATS = [
   { label: "Horas de Aprendizado", value: `${USER_PROFILE.hoursLearning}h`, icon: Clock, color: "#3B82F6" },
 ];
 
-const BADGE_IMAGES = [
-  { label: "Prompt Master", color: "#7C3AED", bg: "#7C3AED30" },
-  { label: "AI Explorer", color: "#10B981", bg: "#10B98130" },
-  { label: "Code Builder", color: "#F97316", bg: "#F9731630" },
-  { label: "Creator", color: "#EC4899", bg: "#EC489930" },
-];
+
 
 const SETTINGS_ITEMS = [
   { icon: User, label: "Faixa etária" },
@@ -303,6 +302,7 @@ function DadosPessoaisDrawer({ open, onClose }: { open: boolean; onClose: () => 
 export default function Perfil() {
   const [, setLocation] = useLocation();
   const [showDados, setShowDados] = useState(false);
+  const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
 
   return (
     <PhoneFrame>
@@ -419,24 +419,44 @@ export default function Perfil() {
               Minhas Insígnias
             </h2>
             <div className="flex gap-3 overflow-x-auto pb-2" style={{ scrollbarWidth: "none" }}>
-              {BADGE_IMAGES.map((badge, i) => (
-                <motion.div
-                  key={i}
-                  className="flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center"
-                  style={{
-                    background: badge.bg,
-                    border: `2px solid ${badge.color}`,
-                    boxShadow: `0 0 12px ${badge.color}30`,
-                  }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.25 + i * 0.08 }}
-                >
-                  <span className="text-center text-[9px] font-bold leading-tight px-1" style={{ color: badge.color, fontFamily: "Inter, sans-serif" }}>
-                    {badge.label}
-                  </span>
-                </motion.div>
-              ))}
+              {BADGES.map((badge, i) => {
+                const Icon = BADGE_ICON_MAP[badge.icon] || Brain;
+                return (
+                  <motion.button
+                    key={badge.id}
+                    onClick={() => setSelectedBadge(badge.id)}
+                    className="flex-shrink-0 w-20 flex flex-col items-center gap-1.5"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.25 + i * 0.08 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center"
+                      style={{
+                        background: badge.earned ? `${badge.color}25` : "rgba(255,255,255,0.06)",
+                        border: `2px solid ${badge.earned ? badge.color : "rgba(255,255,255,0.12)"}`,
+                        boxShadow: badge.earned ? `0 0 16px ${badge.color}30` : "none",
+                      }}
+                    >
+                      {badge.earned ? (
+                        <Icon size={22} style={{ color: badge.color }} />
+                      ) : (
+                        <Lock size={18} className="text-white/25" />
+                      )}
+                    </div>
+                    <span
+                      className="text-center text-[10px] font-bold leading-tight"
+                      style={{
+                        color: badge.earned ? badge.color : "rgba(255,255,255,0.35)",
+                        fontFamily: "Inter, sans-serif",
+                      }}
+                    >
+                      {badge.label}
+                    </span>
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -497,6 +517,8 @@ export default function Perfil() {
         <DadosPessoaisDrawer open={showDados} onClose={() => setShowDados(false)} />
       </div>
       <BottomNav />
+      {/* Badge Modal */}
+      <BadgeModal badgeId={selectedBadge} onClose={() => setSelectedBadge(null)} />
     </PhoneFrame>
   );
 }

@@ -16,6 +16,7 @@ import { IMAGES, TRACKS, BADGES } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 import ProgressBar from "@/components/ProgressBar";
+import BadgeModal from "@/components/BadgeModal";
 
 const ICON_MAP: Record<string, any> = { Brain, MessageSquare, Settings, Rocket };
 
@@ -192,7 +193,7 @@ function TracksSection() {
   );
 }
 
-function BadgesSection() {
+function BadgesSection({ onBadgeClick }: { onBadgeClick: (id: number) => void }) {
   return (
     <motion.div className="mx-5 mt-5" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.6 }}>
       <div className="flex items-center justify-between mb-3">
@@ -203,7 +204,7 @@ function BadgesSection() {
           {BADGES.map((badge, i) => {
             const Icon = ICON_MAP[badge.icon] || Brain;
             return (
-              <motion.button key={badge.id} className="flex flex-col items-center gap-1.5" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.65 + i * 0.07 }}>
+              <motion.button key={badge.id} onClick={() => onBadgeClick(badge.id)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-1.5" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.65 + i * 0.07 }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center relative" style={{ background: badge.earned ? `${badge.color}25` : "rgba(255,255,255,0.05)", border: `2px solid ${badge.earned ? badge.color : "rgba(255,255,255,0.1)"}`, boxShadow: badge.earned ? `0 0 12px ${badge.color}40` : "none" }}>
                   <Icon size={20} style={{ color: badge.earned ? badge.color : "rgba(255,255,255,0.2)" }} />
                   {!badge.earned && badge.progress && (
@@ -226,6 +227,7 @@ function BadgesSection() {
 }
 
 export default function Home() {
+  const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
   return (
     <PhoneFrame>
       <div className="flex-1 overflow-y-auto pb-2" style={{ scrollbarWidth: "none" }}>
@@ -233,10 +235,11 @@ export default function Home() {
         <JourneyProgress />
         <ActiveMission />
         <TracksSection />
-        <BadgesSection />
+        <BadgesSection onBadgeClick={(id) => setSelectedBadge(id)} />
         <div className="h-4" />
       </div>
       <BottomNav />
+      <BadgeModal badgeId={selectedBadge} onClose={() => setSelectedBadge(null)} />
     </PhoneFrame>
   );
 }

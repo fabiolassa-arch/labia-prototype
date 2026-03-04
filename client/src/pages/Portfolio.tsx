@@ -4,6 +4,7 @@
  * botão "Exportar Portfólio"
  */
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import {
@@ -13,11 +14,13 @@ import {
 import { IMAGES, BADGES, USER_PROFILE } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
+import BadgeModal from "@/components/BadgeModal";
 
 const ICON_MAP: Record<string, any> = { Brain, MessageSquare, Settings, Rocket };
 
 export default function Portfolio() {
   const [, setLocation] = useLocation();
+  const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
 
   return (
     <PhoneFrame>
@@ -53,12 +56,14 @@ export default function Portfolio() {
             {BADGES.map((badge, i) => {
               const Icon = ICON_MAP[badge.icon] || Brain;
               return (
-                <motion.div
+                <motion.button
                   key={badge.id}
+                  onClick={() => setSelectedBadge(badge.id)}
                   className="flex flex-col items-center gap-1.5"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.15 + i * 0.08 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center relative"
@@ -105,7 +110,7 @@ export default function Portfolio() {
                       Bloqueado
                     </span>
                   )}
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
@@ -205,6 +210,8 @@ export default function Portfolio() {
         <div className="h-4" />
       </div>
       <BottomNav />
+      {/* Badge Modal */}
+      <BadgeModal badgeId={selectedBadge} onClose={() => setSelectedBadge(null)} />
     </PhoneFrame>
   );
 }
