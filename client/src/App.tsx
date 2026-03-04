@@ -19,6 +19,7 @@ import Portfolio from "./pages/Portfolio";
 import CriandoSolucoes from "./pages/CriandoSolucoes";
 import MeuPrimeiroAppTrilha from "./pages/MeuPrimeiroAppTrilha";
 import EntendendoIA from "./pages/EntendendoIA";
+import MissaoConteudo from "./pages/MissaoConteudo";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function Router() {
       <Route path="/trilha-entendendo-ia" component={EntendendoIA} />
       <Route path="/trilha-solucoes" component={CriandoSolucoes} />
       <Route path="/trilha-meu-app" component={MeuPrimeiroAppTrilha} />
+      <Route path="/missao/:trilha/:id" component={MissaoConteudo} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />

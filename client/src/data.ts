@@ -237,6 +237,115 @@ export const MISSIONS_ENTENDENDO_IA = [
   },
 ];
 
+// Dados detalhados das missões concluídas para tela de revisão
+export type MissionDetail = {
+  id: string; // formato: "trilha-missao" ex: "entendendo-1"
+  trackSlug: string;
+  trackTitle: string;
+  trackColor: string;
+  missionNumber: number;
+  title: string;
+  objective: string;
+  challenge: string;
+  studentAnswer: string;
+  tutorFeedback: string;
+  score: number;
+  maxScore: number;
+  completedAt: string;
+  tips: string[];
+  tags: string[];
+};
+
+export const MISSION_DETAILS: MissionDetail[] = [
+  // --- Trilha: Entendendo a IA ---
+  {
+    id: "entendendo-1",
+    trackSlug: "entendendo-ia",
+    trackTitle: "Entendendo a IA",
+    trackColor: "#7C3AED",
+    missionNumber: 1,
+    title: "O que é Inteligência Artificial?",
+    objective: "Compreender o conceito de Inteligência Artificial e identificar exemplos no cotidiano.",
+    challenge: "Escreva com suas palavras o que você entende por Inteligência Artificial e dê 3 exemplos de IA que você usa no dia a dia.",
+    studentAnswer: "Inteligência Artificial é quando um computador consegue fazer coisas que normalmente só pessoas fazem, como entender o que a gente fala e responder. Exemplos: 1) A Alexa que responde minhas perguntas em casa, 2) O YouTube que sugere vídeos que eu gosto, 3) O corretor do celular que adivinha a palavra que eu quero escrever.",
+    tutorFeedback: "Excelente resposta, Lucas! Você captou muito bem a essência da IA — máquinas que simulam capacidades humanas. Seus 3 exemplos são perfeitos e mostram que você já percebe a IA ao seu redor. A Alexa usa processamento de linguagem natural, o YouTube usa algoritmos de recomendação, e o teclado preditivo usa aprendizado de máquina. Parabéns!",
+    score: 10,
+    maxScore: 10,
+    completedAt: "28 Fev 2026",
+    tips: ["IA não pensa como humanos — ela processa dados e encontra padrões", "Existem IAs especializadas (uma tarefa) e IAs gerais (várias tarefas)"],
+    tags: ["Conceito de IA", "Exemplos práticos", "Cotidiano"],
+  },
+  {
+    id: "entendendo-2",
+    trackSlug: "entendendo-ia",
+    trackTitle: "Entendendo a IA",
+    trackColor: "#7C3AED",
+    missionNumber: 2,
+    title: "Como a IA responde?",
+    objective: "Entender o processo básico de como uma IA recebe uma pergunta e gera uma resposta.",
+    challenge: "Explique com suas palavras como você acha que a IA faz para entender sua pergunta e criar uma resposta. Use uma analogia se quiser!",
+    studentAnswer: "Eu acho que a IA funciona mais ou menos como uma biblioteca gigante. Quando eu faço uma pergunta, ela procura em milhões de textos que já leu e monta uma resposta juntando as informações mais importantes. É como se ela fosse uma pessoa que leu todos os livros do mundo e consegue lembrar de tudo!",
+    tutorFeedback: "Que analogia incrível, Lucas! A ideia da \"biblioteca gigante\" é muito boa. Na prática, a IA foi treinada com bilhões de textos e aprendeu padrões de linguagem. Ela não \"lembra\" exatamente, mas aprendeu a prever qual palavra vem depois da outra. Um detalhe importante: a IA não entende de verdade — ela é muito boa em parecer que entende!",
+    score: 9,
+    maxScore: 10,
+    completedAt: "28 Fev 2026",
+    tips: ["A IA usa modelos de linguagem treinados com bilhões de textos", "Ela prevê a próxima palavra mais provável, não 'pensa' como nós"],
+    tags: ["Processamento", "Linguagem natural", "Analogia"],
+  },
+  {
+    id: "entendendo-3",
+    trackSlug: "entendendo-ia",
+    trackTitle: "Entendendo a IA",
+    trackColor: "#7C3AED",
+    missionNumber: 3,
+    title: "Faça sua primeira pergunta",
+    objective: "Realizar a primeira interação prática com a IA e avaliar a qualidade da resposta recebida.",
+    challenge: "Faça uma pergunta sobre qualquer assunto para a IA. Depois, avalie: a resposta foi clara? Foi útil? Você mudaria algo na sua pergunta?",
+    studentAnswer: "Perguntei: 'O que são buracos negros?' A IA respondeu explicando que são regiões do espaço com gravidade tão forte que nem a luz escapa. Achei a resposta clara e fácil de entender! Mas acho que poderia ter perguntado de um jeito mais específico, tipo 'Explique buracos negros para uma criança de 10 anos', para a resposta ficar ainda mais simples.",
+    tutorFeedback: "Muito bem, Lucas! Você não só fez a pergunta como também refletiu sobre como melhorá-la — isso é pensamento crítico! Sua observação sobre ser mais específico é exatamente o que vamos aprender na próxima trilha: a arte de criar bons prompts. Você já está pensando como um criador!",
+    score: 10,
+    maxScore: 10,
+    completedAt: "01 Mar 2026",
+    tips: ["Quanto mais específica a pergunta, melhor a resposta da IA", "Sempre avalie se a resposta faz sentido — a IA pode errar!"],
+    tags: ["Primeira interação", "Pensamento crítico", "Avaliação"],
+  },
+  {
+    id: "entendendo-4",
+    trackSlug: "entendendo-ia",
+    trackTitle: "Entendendo a IA",
+    trackColor: "#7C3AED",
+    missionNumber: 4,
+    title: "IA no mundo real",
+    objective: "Identificar aplicações reais de IA em diferentes áreas e refletir sobre seu impacto.",
+    challenge: "Liste pelo menos 5 aplicações de IA no mundo real, em áreas diferentes (saúde, educação, entretenimento, etc). Para cada uma, explique brevemente o que a IA faz.",
+    studentAnswer: "1) Saúde: IA que analisa exames de raio-X e ajuda médicos a encontrar doenças mais rápido. 2) Educação: Plataformas como o LabIA que adaptam o ensino para cada aluno. 3) Entretenimento: Netflix e Spotify que recomendam filmes e músicas baseado no que eu gosto. 4) Transporte: Carros autônomos como os da Tesla que dirigem sozinhos. 5) Tradução: Google Tradutor que traduz textos e até conversas em tempo real.",
+    tutorFeedback: "Resposta completa e diversificada! Você cobriu 5 áreas diferentes com exemplos reais e relevantes. Adorei que você incluiu o LabIA como exemplo de IA na educação — mostra que você entende que está usando IA agora mesmo! Cada exemplo demonstra um tipo diferente de IA. Trilha concluída com maestria!",
+    score: 10,
+    maxScore: 10,
+    completedAt: "01 Mar 2026",
+    tips: ["A IA está em mais lugares do que imaginamos", "Nem toda IA é visível — muitas trabalham nos bastidores"],
+    tags: ["Aplicações reais", "Diversidade", "Impacto social"],
+  },
+  // --- Trilha: Criando Prompts (missão 1 concluída) ---
+  {
+    id: "prompts-1",
+    trackSlug: "criando-prompts",
+    trackTitle: "Criando Prompts",
+    trackColor: "#F97316",
+    missionNumber: 1,
+    title: "Converse corretamente com IA",
+    objective: "Aprender a se comunicar de forma clara e eficiente com a Inteligência Artificial.",
+    challenge: "Converse com a IA sobre um tema que você goste. Faça pelo menos 3 perguntas diferentes e observe como pequenas mudanças na forma de perguntar alteram a resposta.",
+    studentAnswer: "Conversei sobre futebol! Pergunta 1: 'Quem é o melhor jogador?' — A IA deu uma resposta genérica sobre vários jogadores. Pergunta 2: 'Quem é o melhor jogador de futebol da história segundo as estatísticas?' — Resposta mais focada, com dados. Pergunta 3: 'Compare Pelé e Messi usando gols, títulos e prêmios individuais' — Resposta super detalhada com tabela! Aprendi que quanto mais detalhes eu dou, melhor a resposta.",
+    tutorFeedback: "Excelente experimento, Lucas! Você demonstrou perfeitamente como a especificidade melhora as respostas. Da pergunta vaga à pergunta estruturada, a qualidade subiu muito. Sua terceira pergunta já tem elementos de um bom prompt: contexto (futebol), critérios (gols, títulos, prêmios) e formato implícito (comparação). Você está pronto para a próxima missão!",
+    score: 9,
+    maxScore: 10,
+    completedAt: "02 Mar 2026",
+    tips: ["Perguntas vagas geram respostas vagas", "Adicionar critérios e contexto melhora drasticamente a resposta"],
+    tags: ["Comunicação", "Especificidade", "Iteração"],
+  },
+];
+
 export const CHAT_MESSAGES = [
   {
     id: 1,

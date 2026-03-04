@@ -5,7 +5,7 @@
  */
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
-import { ArrowLeft, MessageSquare, CheckCircle2, Lock, Circle } from "lucide-react";
+import { ArrowLeft, MessageSquare, CheckCircle2, Lock, Circle, ChevronRight } from "lucide-react";
 import { MISSIONS_CRIANDO_PROMPTS } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
 
@@ -92,43 +92,70 @@ export default function TrilhaDetalhe() {
               </div>
 
               {/* Content */}
-              <div className={`flex-1 pb-8 ${mission.status === "locked" ? "opacity-50" : ""}`}>
-                <h3
-                  className="text-white font-bold text-base leading-tight"
-                  style={{ fontFamily: "Nunito, sans-serif" }}
+              {mission.status === "completed" ? (
+                <button
+                  className="flex-1 pb-8 text-left group"
+                  onClick={() => setLocation(`/missao/prompts/${mission.id}`)}
                 >
-                  {mission.title}
-                </h3>
-                <p
-                  className="text-white/50 text-sm mt-1 leading-relaxed"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  {mission.description}
-                </p>
-
-                {/* Status badge */}
-                <div className="mt-2">
-                  {mission.status === "completed" && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-[#10B981]/15 text-[#10B981]" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Concluída
-                    </span>
-                  )}
-                  {mission.status === "active" && (
-                    <button
-                      onClick={() => setLocation("/chat")}
-                      className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-bold bg-[#F97316] text-white hover:bg-[#ea6c0a] transition-colors"
+                  <div className="flex items-start justify-between">
+                    <h3
+                      className="text-white font-bold text-base leading-tight group-hover:text-[#10B981] transition-colors"
                       style={{ fontFamily: "Nunito, sans-serif" }}
                     >
-                      Continuar
-                    </button>
-                  )}
-                  {mission.status === "locked" && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-white/5 text-white/30" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Bloqueada
+                      {mission.title}
+                    </h3>
+                    <ChevronRight size={16} className="text-white/20 group-hover:text-[#10B981] transition-colors flex-shrink-0 mt-0.5" />
+                  </div>
+                  <p
+                    className="text-white/50 text-sm mt-1 leading-relaxed"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    {mission.description}
+                  </p>
+                  <div className="mt-2 flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-[#10B981]/15 text-[#10B981]" style={{ fontFamily: "Inter, sans-serif" }}>
+                      <CheckCircle2 size={11} /> Concluída
                     </span>
-                  )}
+                    <span
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/5 text-white/40 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981] transition-colors"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
+                      Revisar
+                    </span>
+                  </div>
+                </button>
+              ) : (
+                <div className={`flex-1 pb-8 ${mission.status === "locked" ? "opacity-50" : ""}`}>
+                  <h3
+                    className="text-white font-bold text-base leading-tight"
+                    style={{ fontFamily: "Nunito, sans-serif" }}
+                  >
+                    {mission.title}
+                  </h3>
+                  <p
+                    className="text-white/50 text-sm mt-1 leading-relaxed"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    {mission.description}
+                  </p>
+                  <div className="mt-2">
+                    {mission.status === "active" && (
+                      <button
+                        onClick={() => setLocation("/chat")}
+                        className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-bold bg-[#F97316] text-white hover:bg-[#ea6c0a] transition-colors"
+                        style={{ fontFamily: "Nunito, sans-serif" }}
+                      >
+                        Continuar
+                      </button>
+                    )}
+                    {mission.status === "locked" && (
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-white/5 text-white/30" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Bloqueada
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
           ))}
         </div>

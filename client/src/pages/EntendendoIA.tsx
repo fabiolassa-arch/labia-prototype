@@ -6,7 +6,7 @@
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import {
-  ArrowLeft, Brain, CheckCircle2, Trophy, Sparkles, Star, PartyPopper,
+  ArrowLeft, Brain, CheckCircle2, Trophy, Sparkles, Star, PartyPopper, ChevronRight,
 } from "lucide-react";
 import { MISSIONS_ENTENDENDO_IA } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
@@ -182,14 +182,20 @@ export default function EntendendoIA() {
                 </motion.div>
               </div>
 
-              {/* Content */}
-              <div className="flex-1 pb-8">
-                <h3
-                  className="text-white font-bold text-base leading-tight"
-                  style={{ fontFamily: "Nunito, sans-serif" }}
-                >
-                  {mission.title}
-                </h3>
+              {/* Content — clicável para revisão */}
+              <button
+                className="flex-1 pb-8 text-left group"
+                onClick={() => setLocation(`/missao/entendendo/${mission.id}`)}
+              >
+                <div className="flex items-start justify-between">
+                  <h3
+                    className="text-white font-bold text-base leading-tight group-hover:text-[#10B981] transition-colors"
+                    style={{ fontFamily: "Nunito, sans-serif" }}
+                  >
+                    {mission.title}
+                  </h3>
+                  <ChevronRight size={16} className="text-white/20 group-hover:text-[#10B981] transition-colors flex-shrink-0 mt-0.5" />
+                </div>
                 <p
                   className="text-white/50 text-sm mt-1 leading-relaxed"
                   style={{ fontFamily: "Inter, sans-serif" }}
@@ -197,16 +203,22 @@ export default function EntendendoIA() {
                   {mission.description}
                 </p>
 
-                {/* Completed badge */}
-                <div className="mt-2">
+                {/* Completed badge + revisar */}
+                <div className="mt-2 flex items-center gap-2">
                   <span
                     className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-[#10B981]/15 text-[#10B981]"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     <CheckCircle2 size={11} /> Concluída
                   </span>
+                  <span
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/5 text-white/40 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981] transition-colors"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Revisar
+                  </span>
                 </div>
-              </div>
+              </button>
             </motion.div>
           ))}
         </div>
