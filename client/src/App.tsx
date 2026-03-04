@@ -18,6 +18,7 @@ import Perfil from "./pages/Perfil";
 import Portfolio from "./pages/Portfolio";
 import CriandoSolucoes from "./pages/CriandoSolucoes";
 import MeuPrimeiroAppTrilha from "./pages/MeuPrimeiroAppTrilha";
+import EntendendoIA from "./pages/EntendendoIA";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/home" component={Home} />
       <Route path="/trilhas" component={Trilhas} />
       <Route path="/trilha-detalhe" component={TrilhaDetalhe} />
+      <Route path="/trilha-entendendo-ia" component={EntendendoIA} />
       <Route path="/trilha-solucoes" component={CriandoSolucoes} />
       <Route path="/trilha-meu-app" component={MeuPrimeiroAppTrilha} />
       <Route path="/chat" component={ChatIA} />

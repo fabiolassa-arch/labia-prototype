@@ -31,7 +31,7 @@ function TrackCardLarge({ track, index }: { track: typeof TRACKS[0]; index: numb
       transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
       onClick={() => {
         const routeMap: Record<number, string> = {
-          1: "/trilha-detalhe",
+          1: "/trilha-entendendo-ia",
           2: "/trilha-detalhe",
           3: "/trilha-solucoes",
           4: "/trilha-meu-app",

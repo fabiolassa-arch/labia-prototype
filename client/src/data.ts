@@ -210,6 +210,33 @@ export const BADGES = [
   },
 ];
 
+export const MISSIONS_ENTENDENDO_IA = [
+  {
+    id: 1,
+    title: "O que é Inteligência Artificial?",
+    description: "Descubra o que é IA, como ela está presente no seu dia a dia e por que ela é tão importante para o futuro.",
+    status: "completed" as const,
+  },
+  {
+    id: 2,
+    title: "Como a IA responde?",
+    description: "Entenda como a IA processa informações e gera respostas. Veja como ela 'pensa' de um jeito diferente dos humanos.",
+    status: "completed" as const,
+  },
+  {
+    id: 3,
+    title: "Faça sua primeira pergunta",
+    description: "Interaja com a IA pela primeira vez! Faça uma pergunta e observe como ela responde. Aprenda a avaliar a qualidade da resposta.",
+    status: "completed" as const,
+  },
+  {
+    id: 4,
+    title: "IA no mundo real",
+    description: "Explore exemplos reais de IA: assistentes virtuais, recomendações, tradução automática e muito mais. Identifique a IA ao seu redor!",
+    status: "completed" as const,
+  },
+];
+
 export const CHAT_MESSAGES = [
   {
     id: 1,
