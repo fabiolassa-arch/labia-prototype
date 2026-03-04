@@ -5,7 +5,6 @@
  */
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
-import { Rocket } from "lucide-react";
 import { IMAGES } from "@/data";
 
 export default function Splash() {
@@ -41,21 +40,11 @@ export default function Splash() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-20 h-20 rounded-2xl labia-gradient flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30">
-              <Rocket size={40} className="text-white" />
-            </div>
-            <h1
-              className="text-5xl font-black text-white tracking-tight"
-              style={{ fontFamily: "Nunito, sans-serif" }}
-            >
-              Lab<span className="labia-gradient-text">IA</span>
-            </h1>
-            <p
-              className="text-white/90 text-lg font-semibold mt-2 tracking-wide"
-              style={{ fontFamily: "Nunito, sans-serif" }}
-            >
-              Aprenda. Crie. Inove.
-            </p>
+            <img
+              src={IMAGES.logoWhite}
+              alt="LabIA - Aprenda. Crie. Inove."
+              className="w-80 h-auto drop-shadow-2xl"
+            />
           </motion.div>
         </div>
 

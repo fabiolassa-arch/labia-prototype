@@ -6,7 +6,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { Rocket, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
+import { IMAGES } from "@/data";
 import { toast } from "sonner";
 import PhoneFrame from "@/components/PhoneFrame";
 
@@ -24,12 +25,11 @@ export default function Cadastro() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="w-8 h-8 rounded-lg labia-gradient flex items-center justify-center">
-            <Rocket size={16} className="text-white" />
-          </div>
-          <span className="text-white font-bold text-lg" style={{ fontFamily: "Nunito, sans-serif" }}>
-            Lab<span className="text-[#F97316]">IA</span>
-          </span>
+          <img
+            src={IMAGES.logoWhite}
+            alt="LabIA"
+            className="h-10 w-auto"
+          />
         </motion.div>
 
         {/* Title */}
