@@ -31,9 +31,20 @@ function TrackCardLarge({ track, index }: { track: typeof TRACKS[0]; index: numb
       transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
       onClick={() => {
         if (track.locked) {
-          toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
+          // Trilha Criando Soluções: navegar para sua tela mesmo bloqueada
+          if (track.id === 3) {
+            setLocation("/trilha-solucoes");
+          } else {
+            toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
+          }
         } else {
-          setLocation("/trilha-detalhe");
+          if (track.id === 2) {
+            setLocation("/trilha-detalhe");
+          } else if (track.id === 3) {
+            setLocation("/trilha-solucoes");
+          } else {
+            setLocation("/trilha-detalhe");
+          }
         }
       }}
     >

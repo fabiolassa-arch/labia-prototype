@@ -134,9 +134,17 @@ function TrackCard({ track, index }: { track: typeof TRACKS[0]; index: number })
       transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
       onClick={() => {
         if (track.locked) {
-          toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
+          if (track.id === 3) {
+            setLocation("/trilha-solucoes");
+          } else {
+            toast(`Complete a trilha anterior para desbloquear "${track.title}"`);
+          }
         } else {
-          setLocation("/trilha-detalhe");
+          if (track.id === 3) {
+            setLocation("/trilha-solucoes");
+          } else {
+            setLocation("/trilha-detalhe");
+          }
         }
       }}
     >

@@ -16,6 +16,7 @@ import ChatIA from "./pages/ChatIA";
 import Builder from "./pages/Builder";
 import Perfil from "./pages/Perfil";
 import Portfolio from "./pages/Portfolio";
+import CriandoSolucoes from "./pages/CriandoSolucoes";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/home" component={Home} />
       <Route path="/trilhas" component={Trilhas} />
       <Route path="/trilha-detalhe" component={TrilhaDetalhe} />
+      <Route path="/trilha-solucoes" component={CriandoSolucoes} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />

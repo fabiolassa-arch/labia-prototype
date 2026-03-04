@@ -91,6 +91,33 @@ export const MISSIONS_CRIANDO_PROMPTS = [
   },
 ];
 
+export const MISSIONS_CRIANDO_SOLUCOES = [
+  {
+    id: 1,
+    title: "Identifique um problema real",
+    description: "Observe o mundo ao seu redor e identifique um problema do dia a dia que poderia ser resolvido com tecnologia.",
+    status: "locked" as const,
+  },
+  {
+    id: 2,
+    title: "Gere ideias de solução com IA",
+    description: "Use a IA como parceira criativa para gerar ideias de soluções para o problema que você identificou.",
+    status: "locked" as const,
+  },
+  {
+    id: 3,
+    title: "Estruture sua solução",
+    description: "Organize sua ideia em etapas claras: o que faz, para quem serve e como funciona.",
+    status: "locked" as const,
+  },
+  {
+    id: 4,
+    title: "Pense como um criador de produto",
+    description: "Defina funcionalidades, público-alvo e diferenciais da sua solução digital.",
+    status: "locked" as const,
+  },
+];
+
 export const BADGES = [
   { id: 1, icon: "Brain" as const, label: "Explorador de IA", earned: true, color: "#10B981" },
   { id: 2, icon: "MessageSquare" as const, label: "Mestre dos Prompts", earned: false, progress: 60, color: "#F97316" },
