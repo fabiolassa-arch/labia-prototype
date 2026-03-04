@@ -29,10 +29,10 @@ function Header() {
       transition={{ duration: 0.4 }}
     >
       <div className="flex items-center gap-3">
-        <div className="relative">
-          <img src={IMAGES.avatarBoy} alt="Avatar" className="w-11 h-11 rounded-full object-cover shadow-lg" />
+        <button onClick={() => setLocation("/perfil")} className="relative group">
+          <img src={IMAGES.avatarBoy} alt="Avatar" className="w-11 h-11 rounded-full object-cover shadow-lg group-hover:ring-2 group-hover:ring-[#F97316] transition-all" />
           <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#10B981] rounded-full border-2 border-[#1C1C2E]" />
-        </div>
+        </button>
         <div>
           <p className="text-white/60 text-xs font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Olá,</p>
           <p className="text-white font-bold text-base leading-tight" style={{ fontFamily: "Nunito, sans-serif" }}>Lucas Oliveira</p>
