@@ -301,6 +301,10 @@ export default function MissaoConteudo() {
     ? "/trilha-entendendo-ia"
     : mission.trackSlug === "criando-prompts"
     ? "/trilha-detalhe"
+    : mission.trackSlug === "criando-solucoes"
+    ? "/trilha-solucoes"
+    : mission.trackSlug === "meu-primeiro-app"
+    ? "/trilha-meu-app"
     : "/trilhas";
 
   return (
