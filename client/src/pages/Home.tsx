@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import {
   Brain, MessageSquare, Settings, Rocket, Bell, ChevronRight,
   Star, Lock, CheckCircle2, Zap, Clock, Play, Flame, Trophy,
+  Gift, Sparkles, X,
 } from "lucide-react";
 import { IMAGES, TRACKS, BADGES } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
@@ -50,6 +51,94 @@ function Header() {
         <Bell size={18} className="text-white/70" />
         <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F97316] rounded-full animate-pulse" />
       </button>
+    </motion.div>
+  );
+}
+
+function DailyRewardReminder() {
+  const [, setLocation] = useLocation();
+  const [dismissed, setDismissed] = useState(false);
+
+  if (dismissed) return null;
+
+  return (
+    <motion.div
+      className="mx-5 mt-2 relative overflow-hidden rounded-2xl"
+      initial={{ opacity: 0, y: -10, height: 0 }}
+      animate={{ opacity: 1, y: 0, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.4, delay: 0.05 }}
+    >
+      {/* Background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(135deg, #F97316 0%, #F59E0B 60%, #EF4444 100%)",
+          opacity: 0.15,
+        }}
+      />
+      <div className="absolute inset-0" style={{ border: "1px solid rgba(249,115,22,0.25)", borderRadius: "1rem" }} />
+
+      {/* Animated sparkle particles */}
+      <motion.div
+        className="absolute top-2 right-12 w-1 h-1 rounded-full bg-[#F59E0B]"
+        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+      />
+      <motion.div
+        className="absolute bottom-3 right-20 w-0.5 h-0.5 rounded-full bg-[#F97316]"
+        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+        transition={{ duration: 1.8, repeat: Infinity, delay: 0.8 }}
+      />
+
+      <div className="relative p-3.5 flex items-center gap-3">
+        {/* Animated gift icon */}
+        <motion.div
+          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{ background: "linear-gradient(135deg, #F97316, #F59E0B)" }}
+          animate={{ rotate: [0, -5, 5, -3, 0], scale: [1, 1.05, 1] }}
+          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <Gift size={18} className="text-white" />
+        </motion.div>
+
+        {/* Text content */}
+        <button
+          onClick={() => setLocation("/ranking")}
+          className="flex-1 text-left min-w-0"
+        >
+          <div className="flex items-center gap-1.5">
+            <p className="text-white text-sm font-bold truncate" style={{ fontFamily: "Nunito, sans-serif" }}>
+              Recompensa disponível!
+            </p>
+            <motion.div
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <Sparkles size={12} className="text-[#F59E0B]" />
+            </motion.div>
+          </div>
+          <p className="text-white/50 text-[11px] mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
+            Colete <span className="text-[#F97316] font-bold">+30 XP</span> do dia 4 — toque para coletar
+          </p>
+        </button>
+
+        {/* Arrow + dismiss */}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <button
+            onClick={() => setLocation("/ranking")}
+            className="w-8 h-8 rounded-full bg-[#F97316]/20 flex items-center justify-center hover:bg-[#F97316]/30 transition-colors"
+          >
+            <ChevronRight size={14} className="text-[#F97316]" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); setDismissed(true); }}
+            className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors"
+          >
+            <X size={10} className="text-white/30" />
+          </button>
+        </div>
+      </div>
     </motion.div>
   );
 }
@@ -241,6 +330,7 @@ export default function Home() {
     <PhoneFrame>
       <div className="flex-1 overflow-y-auto pb-2" style={{ scrollbarWidth: "none" }}>
         <Header />
+        <DailyRewardReminder />
         <JourneyProgress />
         <ActiveMission />
         <TracksSection />
