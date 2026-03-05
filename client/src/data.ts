@@ -481,3 +481,149 @@ export const USER_PROFILE = {
   tracksStarted: 2,
   hoursLearning: 3,
 };
+
+// ─── Ranking / Leaderboard ───
+export interface RankingPlayer {
+  id: number;
+  name: string;
+  avatar: string;
+  level: number;
+  title: string;
+  xp: number;
+  missions: number;
+  badges: number;
+  streak: number;
+  isCurrentUser?: boolean;
+  trend: "up" | "down" | "same";
+  trendPositions?: number;
+}
+
+export const RANKING_PLAYERS: RankingPlayer[] = [
+  {
+    id: 1,
+    name: "Ana Beatriz",
+    avatar: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=80&h=80&fit=crop&crop=face",
+    level: 5,
+    title: "Mestra Digital",
+    xp: 4850,
+    missions: 16,
+    badges: 4,
+    streak: 12,
+    trend: "same",
+  },
+  {
+    id: 2,
+    name: "Pedro Henrique",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face",
+    level: 4,
+    title: "Criador de Apps",
+    xp: 4200,
+    missions: 14,
+    badges: 3,
+    streak: 8,
+    trend: "up",
+    trendPositions: 1,
+  },
+  {
+    id: 3,
+    name: "Maria Silva",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face",
+    level: 4,
+    title: "Solucionadora",
+    xp: 3900,
+    missions: 13,
+    badges: 3,
+    streak: 5,
+    trend: "down",
+    trendPositions: 1,
+  },
+  {
+    id: 4,
+    name: "Lucas Oliveira",
+    avatar: "",
+    level: 2,
+    title: "Explorador",
+    xp: 2100,
+    missions: 5,
+    badges: 1,
+    streak: 3,
+    isCurrentUser: true,
+    trend: "up",
+    trendPositions: 2,
+  },
+  {
+    id: 5,
+    name: "Julia Santos",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face",
+    level: 2,
+    title: "Exploradora",
+    xp: 1950,
+    missions: 5,
+    badges: 1,
+    streak: 2,
+    trend: "down",
+    trendPositions: 1,
+  },
+  {
+    id: 6,
+    name: "Gabriel Costa",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
+    level: 2,
+    title: "Explorador",
+    xp: 1800,
+    missions: 4,
+    badges: 1,
+    streak: 1,
+    trend: "same",
+  },
+  {
+    id: 7,
+    name: "Isabella Lima",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
+    level: 1,
+    title: "Iniciante",
+    xp: 1200,
+    missions: 3,
+    badges: 1,
+    streak: 4,
+    trend: "up",
+    trendPositions: 2,
+  },
+  {
+    id: 8,
+    name: "Rafael Souza",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face",
+    level: 1,
+    title: "Iniciante",
+    xp: 950,
+    missions: 2,
+    badges: 0,
+    streak: 1,
+    trend: "down",
+    trendPositions: 1,
+  },
+  {
+    id: 9,
+    name: "Camila Ferreira",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
+    level: 1,
+    title: "Iniciante",
+    xp: 600,
+    missions: 1,
+    badges: 0,
+    streak: 1,
+    trend: "same",
+  },
+  {
+    id: 10,
+    name: "Thiago Alves",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
+    level: 1,
+    title: "Iniciante",
+    xp: 350,
+    missions: 1,
+    badges: 0,
+    streak: 0,
+    trend: "same",
+  },
+];

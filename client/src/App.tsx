@@ -21,6 +21,7 @@ import MeuPrimeiroAppTrilha from "./pages/MeuPrimeiroAppTrilha";
 import EntendendoIA from "./pages/EntendendoIA";
 import MissaoConteudo from "./pages/MissaoConteudo";
 import Notificacoes from "./pages/Notificacoes";
+import Ranking from "./pages/Ranking";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/trilha-meu-app" component={MeuPrimeiroAppTrilha} />
       <Route path="/missao/:trilha/:id" component={MissaoConteudo} />
       <Route path="/notificacoes" component={Notificacoes} />
+      <Route path="/ranking" component={Ranking} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />

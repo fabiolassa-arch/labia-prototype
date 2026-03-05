@@ -10,7 +10,7 @@ import { useLocation } from "wouter";
 import { toast } from "sonner";
 import {
   Brain, MessageSquare, Settings, Rocket, Bell, ChevronRight,
-  Star, Lock, CheckCircle2, Zap, Clock, Play, Flame,
+  Star, Lock, CheckCircle2, Zap, Clock, Play, Flame, Trophy,
 } from "lucide-react";
 import { IMAGES, TRACKS, BADGES } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
@@ -55,6 +55,7 @@ function Header() {
 }
 
 function JourneyProgress() {
+  const [, setLocation] = useLocation();
   return (
     <motion.div
       className="mx-5 mt-2 labia-card p-4"
@@ -77,6 +78,14 @@ function JourneyProgress() {
           <span className="text-white/40 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>~3h de aprendizado</span>
         </div>
       </div>
+      <button
+        onClick={() => setLocation("/ranking")}
+        className="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-xl bg-[#7C3AED]/15 border border-[#7C3AED]/20 hover:bg-[#7C3AED]/25 transition-colors"
+      >
+        <Trophy size={13} className="text-[#FFD700]" />
+        <span className="text-[#7C3AED] text-xs font-bold" style={{ fontFamily: "Nunito, sans-serif" }}>#4 no Ranking</span>
+        <ChevronRight size={12} className="text-[#7C3AED]/60" />
+      </button>
     </motion.div>
   );
 }
