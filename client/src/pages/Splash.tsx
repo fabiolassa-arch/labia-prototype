@@ -62,7 +62,7 @@ export default function Splash() {
             Criar conta
           </button>
           <button
-            onClick={() => setLocation("/home")}
+            onClick={() => setLocation("/login")}
             className="labia-btn-secondary text-lg py-4"
           >
             Já tenho conta

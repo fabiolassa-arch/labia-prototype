@@ -25,6 +25,8 @@ import Ranking from "./pages/Ranking";
 import Configuracoes from "./pages/Configuracoes";
 import TermosDeUso from "./pages/TermosDeUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
+import Login from "./pages/Login";
+import EsqueciSenha from "./pages/EsqueciSenha";
 
 function Router() {
   return (
@@ -44,6 +46,8 @@ function Router() {
       <Route path="/configuracoes" component={Configuracoes} />
       <Route path="/termos-de-uso" component={TermosDeUso} />
       <Route path="/politica-privacidade" component={PoliticaPrivacidade} />
+      <Route path="/login" component={Login} />
+      <Route path="/esqueci-senha" component={EsqueciSenha} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />

@@ -1,27 +1,29 @@
 /**
- * Cadastro — Tela de criação de conta
- * Design: Fundo escuro com partículas, login social, formulário com campos,
- * seleção de faixa etária, botão cadastrar
+ * Login — Tela de login para quem já tem conta
+ * Design: Fundo escuro, login social, formulário e-mail/senha, link "Esqueci minha senha"
+ * Paleta: #1C1C2E (bg), #7C3AED (roxo), #F97316 (laranja), #10B981 (verde)
+ * Fonte: Nunito (headings) + Inter (body)
  */
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, LogIn } from "lucide-react";
 import { IMAGES } from "@/data";
 import { toast } from "sonner";
 import PhoneFrame from "@/components/PhoneFrame";
 
-export default function Cadastro() {
+export default function Login() {
   const [, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
-  const [faixaEtaria, setFaixaEtaria] = useState<"6-10" | "11-14">("11-14");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <PhoneFrame>
       <div className="flex-1 overflow-y-auto px-6 pb-6" style={{ scrollbarWidth: "none" }}>
         {/* Logo */}
         <motion.div
-          className="flex items-center justify-center gap-2 pt-4 pb-4"
+          className="flex items-center justify-center gap-2 pt-6 pb-4"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -34,21 +36,30 @@ export default function Cadastro() {
 
         {/* Title */}
         <motion.h1
-          className="text-white text-2xl font-bold text-center mb-5"
+          className="text-white text-2xl font-bold text-center mb-1"
           style={{ fontFamily: "Nunito, sans-serif" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          Criar conta
+          Bem-vindo de volta!
         </motion.h1>
+        <motion.p
+          className="text-white/40 text-sm text-center mb-6"
+          style={{ fontFamily: "Inter, sans-serif" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15 }}
+        >
+          Entre na sua conta para continuar aprendendo
+        </motion.p>
 
         {/* Social buttons */}
         <motion.div
           className="flex flex-col gap-2.5 mb-5"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.2 }}
         >
           <button
             onClick={() => toast("Login com Google (protótipo)")}
@@ -73,40 +84,37 @@ export default function Cadastro() {
             </svg>
             Continuar com Apple
           </button>
-          <button
-            onClick={() => toast("Login com Facebook (protótipo)")}
-            className="flex items-center justify-center gap-3 w-full py-3 rounded-full bg-[#1877F2] text-white font-semibold text-sm"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Continuar com Facebook
-          </button>
         </motion.div>
 
         {/* Separator */}
         <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px bg-white/15" />
           <span className="text-white/40 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>
-            ou cadastre-se com e-mail
+            ou entre com e-mail
           </span>
           <div className="flex-1 h-px bg-white/15" />
         </div>
 
         {/* Form fields */}
         <motion.div
-          className="flex flex-col gap-3 mb-5"
+          className="flex flex-col gap-3 mb-3"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
         >
-          <input type="text" placeholder="Nome completo" className="labia-input" />
-          <input type="email" placeholder="E-mail" className="labia-input" />
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="labia-input"
+          />
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="labia-input pr-12"
             />
             <button
@@ -116,61 +124,41 @@ export default function Cadastro() {
               {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
             </button>
           </div>
-          <input type="password" placeholder="Confirmar senha" className="labia-input" />
         </motion.div>
 
-        {/* Faixa etária */}
+        {/* Forgot password */}
         <motion.div
-          className="mb-6"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-end mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-white/70 text-sm font-medium mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
-            Faixa etária
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={() => setFaixaEtaria("6-10")}
-              className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
-                faixaEtaria === "6-10"
-                  ? "bg-[#F97316] text-white"
-                  : "border border-white/20 text-white/60"
-              }`}
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              6 a 10 anos
-            </button>
-            <button
-              onClick={() => setFaixaEtaria("11-14")}
-              className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
-                faixaEtaria === "11-14"
-                  ? "bg-[#F97316] text-white"
-                  : "border border-white/20 text-white/60"
-              }`}
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              11 a 14 anos
-            </button>
-          </div>
+          <button
+            onClick={() => setLocation("/esqueci-senha")}
+            className="text-[#7C3AED] text-sm font-semibold hover:text-[#9061F9] transition-colors"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            Esqueci minha senha
+          </button>
         </motion.div>
 
-        {/* Cadastrar button */}
+        {/* Login button */}
         <motion.button
-          onClick={() => setLocation("/onboarding")}
-          className="labia-btn-primary w-full text-base py-4 mb-4"
+          onClick={() => setLocation("/home")}
+          className="labia-btn-primary w-full text-base py-4 mb-4 flex items-center justify-center gap-2"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
         >
-          Cadastrar
+          <LogIn size={18} />
+          Entrar
         </motion.button>
 
-        {/* Login link */}
+        {/* Register link */}
         <p className="text-center text-white/50 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>
-          Já tenho conta?{" "}
-          <button onClick={() => setLocation("/login")} className="text-[#F97316] font-semibold underline">
-            Entrar
+          Não tem conta?{" "}
+          <button onClick={() => setLocation("/cadastro")} className="text-[#F97316] font-semibold underline">
+            Criar conta
           </button>
         </p>
       </div>
