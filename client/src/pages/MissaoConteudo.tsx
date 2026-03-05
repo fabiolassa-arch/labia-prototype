@@ -10,7 +10,7 @@ import {
   BookOpen, Sparkles, ChevronDown, ChevronUp, Clock, Tag,
   Share2, X, Copy, Check, ExternalLink,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { MISSION_DETAILS, IMAGES } from "@/data";
 import PhoneFrame from "@/components/PhoneFrame";
 
@@ -184,6 +184,42 @@ function ShareModal({
         </button>
       </motion.div>
     </motion.div>
+  );
+}
+
+/* ─── Copy Button Component ─── */
+function CopyButton({ text, label = "Copiar" }: { text: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [text]);
+
+  return (
+    <motion.button
+      onClick={handleCopy}
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+        copied
+          ? "bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30"
+          : "bg-white/8 text-white/50 border border-white/10 hover:bg-white/15 hover:text-white/70"
+      }`}
+      style={{ fontFamily: "Inter, sans-serif" }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {copied ? (
+        <>
+          <Check size={12} />
+          Copiado!
+        </>
+      ) : (
+        <>
+          <Copy size={12} />
+          {label}
+        </>
+      )}
+    </motion.button>
   );
 }
 
@@ -382,6 +418,9 @@ export default function MissaoConteudo() {
               <p className="text-white/70 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
                 {mission.challenge}
               </p>
+              <div className="flex justify-end mt-2.5">
+                <CopyButton text={mission.challenge} label="Copiar desafio" />
+              </div>
             </div>
           </Section>
 
@@ -401,6 +440,9 @@ export default function MissaoConteudo() {
               <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
                 {mission.studentAnswer}
               </p>
+              <div className="flex justify-end mt-2.5">
+                <CopyButton text={mission.studentAnswer} label="Copiar resposta" />
+              </div>
             </div>
           </Section>
 
@@ -430,6 +472,9 @@ export default function MissaoConteudo() {
               <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
                 {mission.tutorFeedback}
               </p>
+              <div className="flex justify-end mt-2.5">
+                <CopyButton text={mission.tutorFeedback} label="Copiar feedback" />
+              </div>
             </div>
           </Section>
 
@@ -445,11 +490,14 @@ export default function MissaoConteudo() {
                   transition={{ delay: 0.7 + i * 0.1 }}
                 >
                   <Lightbulb size={14} className="text-[#F59E0B] flex-shrink-0 mt-0.5" />
-                  <p className="text-white/70 text-xs leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                  <p className="text-white/70 text-xs leading-relaxed flex-1" style={{ fontFamily: "Inter, sans-serif" }}>
                     {tip}
                   </p>
                 </motion.div>
               ))}
+              <div className="flex justify-end mt-1">
+                <CopyButton text={mission.tips.join("\n")} label="Copiar todas as dicas" />
+              </div>
             </div>
           </Section>
 
