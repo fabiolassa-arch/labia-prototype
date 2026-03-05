@@ -443,7 +443,7 @@ export default function Configuracoes() {
               icon={HelpCircle}
               label="Central de ajuda"
               iconColor="rgba(255,255,255,0.4)"
-              onClick={() => toast("Central de ajuda (protótipo)")}
+              onClick={() => setLocation("/ajuda")}
               isLast
             >
               <ExternalLink size={14} className="text-white/20" />

@@ -27,6 +27,7 @@ import TermosDeUso from "./pages/TermosDeUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import Login from "./pages/Login";
 import EsqueciSenha from "./pages/EsqueciSenha";
+import AjudaSuporte from "./pages/AjudaSuporte";
 
 function Router() {
   return (
@@ -48,6 +49,7 @@ function Router() {
       <Route path="/politica-privacidade" component={PoliticaPrivacidade} />
       <Route path="/login" component={Login} />
       <Route path="/esqueci-senha" component={EsqueciSenha} />
+      <Route path="/ajuda" component={AjudaSuporte} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />
