@@ -22,6 +22,7 @@ import EntendendoIA from "./pages/EntendendoIA";
 import MissaoConteudo from "./pages/MissaoConteudo";
 import Notificacoes from "./pages/Notificacoes";
 import Ranking from "./pages/Ranking";
+import Configuracoes from "./pages/Configuracoes";
 
 function Router() {
   return (
@@ -38,6 +39,7 @@ function Router() {
       <Route path="/missao/:trilha/:id" component={MissaoConteudo} />
       <Route path="/notificacoes" component={Notificacoes} />
       <Route path="/ranking" component={Ranking} />
+      <Route path="/configuracoes" component={Configuracoes} />
       <Route path="/chat" component={ChatIA} />
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />

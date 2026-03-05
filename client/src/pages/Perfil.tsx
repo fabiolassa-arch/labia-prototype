@@ -476,7 +476,7 @@ export default function Perfil() {
                 return (
                   <button
                     key={i}
-                    onClick={() => toast(`${item.label} (protótipo)`)}
+                    onClick={() => setLocation("/configuracoes")}
                     className="w-full flex items-center justify-between px-4 py-3.5 hover:bg-white/5 transition-colors"
                     style={{ borderBottom: i < SETTINGS_ITEMS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}
                   >
