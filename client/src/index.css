@@ -1,10 +1,12 @@
 /* ============================================================
    LabIA — Design System
    Philosophy: "Friendly Mission Control"
-   Dark mode elegante, gradientes roxo→laranja, cards limpos,
+   Suporta modo escuro e claro. Gradientes roxo→laranja, cards limpos,
    animações suaves. Público: crianças e jovens 6–14 anos.
-   Paleta: #1C1C2E (bg), #7C3AED (roxo), #F97316 (laranja),
+   Paleta escura: #1C1C2E (bg), #7C3AED (roxo), #F97316 (laranja),
            #10B981 (verde/sucesso), #A0A0B8 (texto secundário)
+   Paleta clara: #F8F7FF (bg), #7C3AED (roxo), #F97316 (laranja),
+           #10B981 (verde/sucesso), #64748B (texto secundário)
    Fonte: Nunito (headings) + Inter (body)
    ============================================================ */
 
@@ -52,9 +54,9 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ─── Dark Theme (default) ─── */
 :root {
   --radius: 1rem;
-  /* LabIA Dark Theme */
   --background: oklch(0.148 0.02 270);
   --foreground: oklch(0.97 0 0);
   --card: oklch(0.195 0.022 270);
@@ -87,11 +89,96 @@
   --chart-3: oklch(0.60 0.18 160);
   --chart-4: oklch(0.67 0.04 270);
   --chart-5: oklch(0.25 0.02 270);
+
+  /* LabIA custom tokens */
+  --labia-bg: #1C1C2E;
+  --labia-card-bg: rgba(255,255,255,0.04);
+  --labia-card-border: rgba(255,255,255,0.08);
+  --labia-text-primary: #FFFFFF;
+  --labia-text-secondary: rgba(255,255,255,0.5);
+  --labia-text-muted: rgba(255,255,255,0.3);
+  --labia-input-bg: transparent;
+  --labia-input-border: rgba(255,255,255,0.2);
+  --labia-input-text: #FFFFFF;
+  --labia-input-placeholder: rgba(255,255,255,0.4);
+  --labia-hover-bg: rgba(255,255,255,0.03);
+  --labia-divider: rgba(255,255,255,0.04);
+  --labia-overlay-bg: rgba(0,0,0,0.6);
+  --labia-dropdown-bg: #2a2a3e;
+  --labia-dropdown-border: rgba(255,255,255,0.1);
+  --labia-toggle-off: rgba(255,255,255,0.1);
+  --labia-scrollbar: rgba(255,255,255,0.15);
+  --labia-phone-shadow: rgba(0,0,0,0.5);
+  --labia-btn-secondary-border: rgba(255,255,255,0.5);
+  --labia-btn-secondary-hover-bg: rgba(255,255,255,0.05);
+  --labia-section-bg: rgba(255,255,255,0.03);
+  --labia-section-border: rgba(255,255,255,0.06);
+}
+
+/* ─── Light Theme ─── */
+.light {
+  --background: oklch(0.98 0.005 270);
+  --foreground: oklch(0.18 0.02 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 270);
+  --primary: oklch(0.56 0.24 293);
+  --primary-foreground: oklch(0.97 0 0);
+  --secondary: oklch(0.65 0.22 40);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.94 0.005 270);
+  --muted-foreground: oklch(0.45 0.02 270);
+  --accent: oklch(0.60 0.18 160);
+  --accent-foreground: oklch(0.97 0 0);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.97 0 0);
+  --border: oklch(0 0 0 / 8%);
+  --input: oklch(0 0 0 / 6%);
+  --ring: oklch(0.56 0.24 293);
+  --sidebar: oklch(0.97 0.005 270);
+  --sidebar-foreground: oklch(0.18 0.02 270);
+  --sidebar-primary: oklch(0.56 0.24 293);
+  --sidebar-primary-foreground: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.94 0.005 270);
+  --sidebar-accent-foreground: oklch(0.18 0.02 270);
+  --sidebar-border: oklch(0 0 0 / 8%);
+  --sidebar-ring: oklch(0.56 0.24 293);
+  --chart-1: oklch(0.56 0.24 293);
+  --chart-2: oklch(0.65 0.22 40);
+  --chart-3: oklch(0.60 0.18 160);
+  --chart-4: oklch(0.45 0.02 270);
+  --chart-5: oklch(0.94 0.005 270);
+
+  /* LabIA custom tokens - light */
+  --labia-bg: #F8F7FF;
+  --labia-card-bg: rgba(0,0,0,0.03);
+  --labia-card-border: rgba(0,0,0,0.08);
+  --labia-text-primary: #1C1C2E;
+  --labia-text-secondary: rgba(0,0,0,0.55);
+  --labia-text-muted: rgba(0,0,0,0.35);
+  --labia-input-bg: rgba(0,0,0,0.03);
+  --labia-input-border: rgba(0,0,0,0.15);
+  --labia-input-text: #1C1C2E;
+  --labia-input-placeholder: rgba(0,0,0,0.35);
+  --labia-hover-bg: rgba(0,0,0,0.03);
+  --labia-divider: rgba(0,0,0,0.06);
+  --labia-overlay-bg: rgba(0,0,0,0.4);
+  --labia-dropdown-bg: #FFFFFF;
+  --labia-dropdown-border: rgba(0,0,0,0.1);
+  --labia-toggle-off: rgba(0,0,0,0.1);
+  --labia-scrollbar: rgba(0,0,0,0.12);
+  --labia-phone-shadow: rgba(0,0,0,0.2);
+  --labia-btn-secondary-border: rgba(0,0,0,0.3);
+  --labia-btn-secondary-hover-bg: rgba(0,0,0,0.05);
+  --labia-section-bg: rgba(0,0,0,0.02);
+  --labia-section-border: rgba(0,0,0,0.06);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
   body {
     @apply bg-background text-foreground;
@@ -147,8 +234,8 @@
     background-clip: text;
   }
   .labia-card {
-    background: oklch(0.195 0.022 270);
-    border: 1px solid oklch(1 0 0 / 8%);
+    background: var(--labia-card-bg);
+    border: 1px solid var(--labia-card-border);
     border-radius: 1rem;
   }
   .labia-progress-bar {
@@ -171,32 +258,32 @@
   }
   .labia-btn-secondary {
     background: transparent;
-    color: white;
+    color: var(--labia-text-primary);
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    border: 2px solid rgba(255,255,255,0.5);
+    border: 2px solid var(--labia-btn-secondary-border);
     border-radius: 9999px;
     padding: 0.875rem 2rem;
     text-align: center;
     transition: all 0.2s;
   }
   .labia-btn-secondary:hover {
-    border-color: white;
-    background: rgba(255,255,255,0.05);
+    border-color: var(--labia-text-primary);
+    background: var(--labia-btn-secondary-hover-bg);
   }
   .labia-input {
-    background: transparent;
-    border: 1.5px solid rgba(255,255,255,0.2);
+    background: var(--labia-input-bg);
+    border: 1.5px solid var(--labia-input-border);
     border-radius: 9999px;
     padding: 0.75rem 1.25rem;
-    color: white;
+    color: var(--labia-input-text);
     font-family: 'Inter', sans-serif;
     font-size: 0.875rem;
     width: 100%;
     transition: border-color 0.2s;
   }
   .labia-input::placeholder {
-    color: rgba(255,255,255,0.4);
+    color: var(--labia-input-placeholder);
   }
   .labia-input:focus {
     outline: none;
@@ -210,7 +297,7 @@
     max-width: 390px;
     margin: 0 auto;
     min-height: 100dvh;
-    background: #1C1C2E;
+    background: var(--labia-bg);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -220,10 +307,21 @@
       border-radius: 2.5rem;
       min-height: auto;
       height: 844px;
-      box-shadow: 0 0 0 8px #111, 0 0 0 10px #333, 0 25px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 0 0 8px #111, 0 0 0 10px #333, 0 25px 50px var(--labia-phone-shadow);
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+  }
+
+  /* Theme-aware text helpers */
+  .labia-text {
+    color: var(--labia-text-primary);
+  }
+  .labia-text-sub {
+    color: var(--labia-text-secondary);
+  }
+  .labia-text-dim {
+    color: var(--labia-text-muted);
   }
 }
 
@@ -235,6 +333,6 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: oklch(1 0 0 / 15%);
+  background: var(--labia-scrollbar);
   border-radius: 9999px;
 }

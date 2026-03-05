@@ -1,49 +1,42 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+/**
+ * NotFound — Página 404
+ * Suporta tema claro e escuro via useLabiaTheme
+ */
+import { motion } from "framer-motion";
 import { AlertCircle, Home } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLabiaTheme } from "@/hooks/useLabiaTheme";
+import PhoneFrame from "@/components/PhoneFrame";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
-
-  const handleGoHome = () => {
-    setLocation("/");
-  };
+  const t = useLabiaTheme();
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-      <Card className="w-full max-w-lg mx-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <CardContent className="pt-8 pb-8 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-100 rounded-full animate-pulse" />
-              <AlertCircle className="relative h-16 w-16 text-red-500" />
-            </div>
-          </div>
-
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">404</h1>
-
-          <h2 className="text-xl font-semibold text-slate-700 mb-4">
-            Page Not Found
-          </h2>
-
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Sorry, the page you are looking for doesn't exist.
-            <br />
-            It may have been moved or deleted.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              onClick={handleGoHome}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Go Home
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <PhoneFrame>
+      <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
+        <motion.div className="relative mb-6" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+          <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: "rgba(239,68,68,0.15)" }} />
+          <AlertCircle className="relative h-16 w-16 text-red-500" />
+        </motion.div>
+        <motion.h1 className="text-4xl font-bold mb-2" style={{ fontFamily: "Nunito, sans-serif", color: t.textPrimary }}
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          404
+        </motion.h1>
+        <motion.h2 className="text-xl font-semibold mb-4" style={{ fontFamily: "Nunito, sans-serif", color: t.textSecondary }}
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
+          Página não encontrada
+        </motion.h2>
+        <motion.p className="text-sm mb-8 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", color: t.textMuted }}
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          Desculpe, a página que você procura não existe ou foi movida.
+        </motion.p>
+        <motion.button onClick={() => setLocation("/")}
+          className="labia-btn-primary px-6 py-3 text-sm flex items-center gap-2"
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+          <Home className="w-4 h-4" />Voltar ao início
+        </motion.button>
+      </div>
+    </PhoneFrame>
   );
 }

@@ -1,10 +1,12 @@
 /**
  * BottomNav — Navegação inferior do app
  * Fiel ao design do protótipo: Home, Trilhas, Chat IA, Portfólio
+ * Suporta tema claro e escuro via CSS variables.
  */
 import { motion } from "framer-motion";
 import { Home, BookOpen, MessageSquare, User } from "lucide-react";
 import { useLocation } from "wouter";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const NAV_ITEMS = [
   { icon: Home, label: "Home", path: "/home" },
@@ -15,13 +17,19 @@ const NAV_ITEMS = [
 
 export default function BottomNav() {
   const [location, setLocation] = useLocation();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
+  const inactiveColor = isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.35)";
 
   return (
     <div
       className="sticky bottom-0 left-0 right-0 flex items-center justify-around px-2 py-3 z-10 flex-shrink-0"
       style={{
-        background: "linear-gradient(to top, #1C1C2E 80%, transparent)",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        background: isDark
+          ? "linear-gradient(to top, #1C1C2E 80%, transparent)"
+          : "linear-gradient(to top, #F8F7FF 80%, transparent)",
+        borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"}`,
       }}
     >
       {NAV_ITEMS.map((item) => {
@@ -36,7 +44,7 @@ export default function BottomNav() {
             <div className="relative">
               <Icon
                 size={20}
-                style={{ color: isActive ? "#F97316" : "rgba(255,255,255,0.35)" }}
+                style={{ color: isActive ? "#F97316" : inactiveColor }}
               />
               {isActive && (
                 <motion.div
@@ -49,7 +57,7 @@ export default function BottomNav() {
               className="text-[10px] font-semibold"
               style={{
                 fontFamily: "Inter, sans-serif",
-                color: isActive ? "#F97316" : "rgba(255,255,255,0.35)",
+                color: isActive ? "#F97316" : inactiveColor,
               }}
             >
               {item.label}

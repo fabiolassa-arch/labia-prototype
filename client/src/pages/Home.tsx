@@ -1,7 +1,7 @@
 /**
  * Home — Dashboard principal do aluno
  * Design: "Friendly Mission Control"
- * Paleta: #1C1C2E (bg), #7C3AED (roxo), #F97316 (laranja), #10B981 (verde)
+ * Suporta tema claro e escuro via useLabiaTheme
  * Fonte: Nunito (headings) + Inter (body)
  */
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { IMAGES, TRACKS, BADGES } from "@/data";
 import { useTutorial, TUTORIAL_STEPS } from "@/components/TutorialOverlay";
+import { useLabiaTheme } from "@/hooks/useLabiaTheme";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 import ProgressBar from "@/components/ProgressBar";
@@ -24,6 +25,7 @@ const ICON_MAP: Record<string, any> = { Brain, MessageSquare, Settings, Rocket }
 
 function Header() {
   const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
   return (
     <motion.div
       className="flex items-center justify-between px-5 pt-5 pb-3"
@@ -34,11 +36,11 @@ function Header() {
       <div className="flex items-center gap-3">
         <button onClick={() => setLocation("/perfil")} className="relative group">
           <img src={IMAGES.avatarBoy} alt="Avatar" className="w-11 h-11 rounded-full object-cover shadow-lg group-hover:ring-2 group-hover:ring-[#F97316] transition-all" />
-          <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#10B981] rounded-full border-2 border-[#1C1C2E]" />
+          <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#10B981] rounded-full" style={{ border: `2px solid ${t.bg}` }} />
         </button>
         <div>
-          <p className="text-white/60 text-xs font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Olá,</p>
-          <p className="text-white font-bold text-base leading-tight" style={{ fontFamily: "Nunito, sans-serif" }}>Lucas Oliveira</p>
+          <p className="text-xs font-medium" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>Olá,</p>
+          <p className="font-bold text-base leading-tight" style={{ fontFamily: "Nunito, sans-serif", color: t.textPrimary }}>Lucas Oliveira</p>
           <div className="flex items-center gap-1 mt-0.5">
             <Flame size={10} className="text-[#F97316]" />
             <span className="text-[#F97316] text-xs font-semibold" style={{ fontFamily: "Inter, sans-serif" }}>Nível 2 — Explorador</span>
@@ -47,9 +49,10 @@ function Header() {
       </div>
       <button
         onClick={() => setLocation("/notificacoes")}
-        className="relative w-10 h-10 rounded-full bg-white/8 flex items-center justify-center hover:bg-white/15 transition-colors"
+        className="relative w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+        style={{ background: t.isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" }}
       >
-        <Bell size={18} className="text-white/70" />
+        <Bell size={18} style={{ color: t.textSecondary }} />
         <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F97316] rounded-full animate-pulse" />
       </button>
     </motion.div>
@@ -59,6 +62,7 @@ function Header() {
 function DailyRewardReminder() {
   const [, setLocation] = useLocation();
   const [dismissed, setDismissed] = useState(false);
+  const t = useLabiaTheme();
 
   if (dismissed) return null;
 
@@ -70,30 +74,11 @@ function DailyRewardReminder() {
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.4, delay: 0.05 }}
     >
-      {/* Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(135deg, #F97316 0%, #F59E0B 60%, #EF4444 100%)",
-          opacity: 0.15,
-        }}
-      />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #F97316 0%, #F59E0B 60%, #EF4444 100%)", opacity: t.isDark ? 0.15 : 0.1 }} />
       <div className="absolute inset-0" style={{ border: "1px solid rgba(249,115,22,0.25)", borderRadius: "1rem" }} />
-
-      {/* Animated sparkle particles */}
-      <motion.div
-        className="absolute top-2 right-12 w-1 h-1 rounded-full bg-[#F59E0B]"
-        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-      />
-      <motion.div
-        className="absolute bottom-3 right-20 w-0.5 h-0.5 rounded-full bg-[#F97316]"
-        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
-        transition={{ duration: 1.8, repeat: Infinity, delay: 0.8 }}
-      />
-
+      <motion.div className="absolute top-2 right-12 w-1 h-1 rounded-full bg-[#F59E0B]" animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }} />
+      <motion.div className="absolute bottom-3 right-20 w-0.5 h-0.5 rounded-full bg-[#F97316]" animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }} transition={{ duration: 1.8, repeat: Infinity, delay: 0.8 }} />
       <div className="relative p-3.5 flex items-center gap-3">
-        {/* Animated gift icon */}
         <motion.div
           className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{ background: "linear-gradient(135deg, #F97316, #F59E0B)" }}
@@ -102,41 +87,23 @@ function DailyRewardReminder() {
         >
           <Gift size={18} className="text-white" />
         </motion.div>
-
-        {/* Text content */}
-        <button
-          onClick={() => setLocation("/ranking")}
-          className="flex-1 text-left min-w-0"
-        >
+        <button onClick={() => setLocation("/ranking")} className="flex-1 text-left min-w-0">
           <div className="flex items-center gap-1.5">
-            <p className="text-white text-sm font-bold truncate" style={{ fontFamily: "Nunito, sans-serif" }}>
-              Recompensa disponível!
-            </p>
-            <motion.div
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
+            <p className="text-sm font-bold truncate" style={{ fontFamily: "Nunito, sans-serif", color: t.textPrimary }}>Recompensa disponível!</p>
+            <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>
               <Sparkles size={12} className="text-[#F59E0B]" />
             </motion.div>
           </div>
-          <p className="text-white/50 text-[11px] mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
+          <p className="text-[11px] mt-0.5" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>
             Colete <span className="text-[#F97316] font-bold">+30 XP</span> do dia 4 — toque para coletar
           </p>
         </button>
-
-        {/* Arrow + dismiss */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <button
-            onClick={() => setLocation("/ranking")}
-            className="w-8 h-8 rounded-full bg-[#F97316]/20 flex items-center justify-center hover:bg-[#F97316]/30 transition-colors"
-          >
+          <button onClick={() => setLocation("/ranking")} className="w-8 h-8 rounded-full bg-[#F97316]/20 flex items-center justify-center hover:bg-[#F97316]/30 transition-colors">
             <ChevronRight size={14} className="text-[#F97316]" />
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); setDismissed(true); }}
-            className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors"
-          >
-            <X size={10} className="text-white/30" />
+          <button onClick={(e) => { e.stopPropagation(); setDismissed(true); }} className="w-6 h-6 rounded-full flex items-center justify-center transition-colors" style={{ background: t.isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}>
+            <X size={10} style={{ color: t.textMuted }} />
           </button>
         </div>
       </div>
@@ -146,26 +113,22 @@ function DailyRewardReminder() {
 
 function JourneyProgress() {
   const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
   return (
-    <motion.div
-      className="mx-5 mt-2 labia-card p-4"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.1 }}
-    >
+    <motion.div className="mx-5 mt-2 labia-card p-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <Zap size={14} className="text-[#F97316]" />
-          <span className="text-white text-sm font-semibold" style={{ fontFamily: "Nunito, sans-serif" }}>Sua jornada</span>
+          <span className="text-sm font-semibold" style={{ fontFamily: "Nunito, sans-serif", color: t.textPrimary }}>Sua jornada</span>
         </div>
         <span className="text-[#F97316] text-sm font-bold" style={{ fontFamily: "Nunito, sans-serif" }}>35%</span>
       </div>
       <ProgressBar value={35} />
       <div className="flex items-center justify-between mt-2">
-        <span className="text-white/40 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>5 de 16 missões concluídas</span>
+        <span className="text-xs" style={{ fontFamily: "Inter, sans-serif", color: t.textMuted }}>5 de 16 missões concluídas</span>
         <div className="flex items-center gap-1">
-          <Clock size={10} className="text-white/40" />
-          <span className="text-white/40 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>~3h de aprendizado</span>
+          <Clock size={10} style={{ color: t.textMuted }} />
+          <span className="text-xs" style={{ fontFamily: "Inter, sans-serif", color: t.textMuted }}>~3h de aprendizado</span>
         </div>
       </div>
       <button
@@ -182,14 +145,10 @@ function JourneyProgress() {
 
 function ActiveMission() {
   const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
   return (
-    <motion.div
-      className="mx-5 mt-4"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.2 }}
-    >
-      <p className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-2 px-1" style={{ fontFamily: "Inter, sans-serif" }}>
+    <motion.div className="mx-5 mt-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}>
+      <p className="text-xs font-semibold uppercase tracking-wider mb-2 px-1" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>
         Missão em andamento
       </p>
       <div className="labia-card p-4 border-l-4 border-[#F97316] relative overflow-hidden">
@@ -199,10 +158,10 @@ function ActiveMission() {
             <MessageSquare size={18} className="text-[#F97316]" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white font-bold text-sm leading-tight" style={{ fontFamily: "Nunito, sans-serif" }}>
+            <p className="font-bold text-sm leading-tight" style={{ fontFamily: "Nunito, sans-serif", color: t.textPrimary }}>
               Missão 2 — Estruture um prompt eficiente
             </p>
-            <p className="text-white/50 text-xs mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Trilha: Criando Prompts</p>
+            <p className="text-xs mt-0.5" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>Trilha: Criando Prompts</p>
             <div className="flex items-center gap-2 mt-2">
               <ProgressBar value={60} className="flex-1" />
               <span className="text-[#F97316] text-xs font-bold flex-shrink-0" style={{ fontFamily: "Nunito, sans-serif" }}>60%</span>
@@ -224,42 +183,38 @@ function ActiveMission() {
 
 function TrackCard({ track, index }: { track: typeof TRACKS[0]; index: number }) {
   const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
   const Icon = ICON_MAP[track.icon] || Brain;
   return (
     <motion.button
-      className="labia-card p-3.5 text-left hover:border-white/20 transition-all active:scale-95 relative overflow-hidden"
+      className="labia-card p-3.5 text-left transition-all active:scale-95 relative overflow-hidden"
       style={{ borderColor: track.locked ? undefined : `${track.color}30` }}
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
       onClick={() => {
-        const routeMap: Record<number, string> = {
-          1: "/trilha-entendendo-ia",
-          2: "/trilha-detalhe",
-          3: "/trilha-solucoes",
-          4: "/trilha-meu-app",
-        };
+        const routeMap: Record<number, string> = { 1: "/trilha-entendendo-ia", 2: "/trilha-detalhe", 3: "/trilha-solucoes", 4: "/trilha-meu-app" };
         setLocation(routeMap[track.id] || "/trilha-detalhe");
       }}
     >
-      <div className="absolute top-0 left-0 right-0 h-1 rounded-t-xl" style={{ background: track.locked ? "#374151" : `linear-gradient(90deg, ${track.color}, ${track.color}88)` }} />
+      <div className="absolute top-0 left-0 right-0 h-1 rounded-t-xl" style={{ background: track.locked ? (t.isDark ? "#374151" : "#D1D5DB") : `linear-gradient(90deg, ${track.color}, ${track.color}88)` }} />
       <div className="flex items-start justify-between mt-1">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: track.locked ? "#374151" : `${track.color}25` }}>
-          {track.locked ? <Lock size={15} className="text-white/30" /> : <Icon size={15} style={{ color: track.color }} />}
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: track.locked ? (t.isDark ? "#374151" : "#E5E7EB") : `${track.color}25` }}>
+          {track.locked ? <Lock size={15} style={{ color: t.textMuted }} /> : <Icon size={15} style={{ color: track.color }} />}
         </div>
         {track.progress === 100 && <CheckCircle2 size={16} className="text-[#10B981]" />}
-        {track.locked && <span className="text-white/25 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>Bloqueada</span>}
+        {track.locked && <span className="text-xs" style={{ fontFamily: "Inter, sans-serif", color: t.textMuted }}>Bloqueada</span>}
       </div>
-      <p className="text-sm mt-2 leading-tight font-bold" style={{ fontFamily: "Nunito, sans-serif", color: track.locked ? "rgba(255,255,255,0.3)" : "white" }}>
+      <p className="text-sm mt-2 leading-tight font-bold" style={{ fontFamily: "Nunito, sans-serif", color: track.locked ? t.textMuted : t.textPrimary }}>
         {track.title}
       </p>
-      <p className="text-xs mt-0.5 leading-tight" style={{ fontFamily: "Inter, sans-serif", color: track.locked ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.5)" }}>
+      <p className="text-[10px] mt-0.5 leading-tight" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>
         {track.description}
       </p>
       {!track.locked && (
         <div className="mt-2.5">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-white/40 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>{track.done}/{track.missions} missões</span>
+            <span className="text-xs" style={{ fontFamily: "Inter, sans-serif", color: t.textMuted }}>{track.done}/{track.missions} missões</span>
             <span className="text-xs font-bold" style={{ fontFamily: "Nunito, sans-serif", color: track.progress === 100 ? "#10B981" : track.color }}>{track.progress}%</span>
           </div>
           <ProgressBar value={track.progress} />
@@ -277,10 +232,11 @@ function TrackCard({ track, index }: { track: typeof TRACKS[0]; index: number })
 
 function TracksSection() {
   const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
   return (
     <div className="mx-5 mt-5">
       <div className="flex items-center justify-between mb-3">
-        <p className="text-white/60 text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Suas trilhas</p>
+        <p className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>Suas trilhas</p>
         <button onClick={() => setLocation("/trilhas")} className="flex items-center gap-0.5 text-[#7C3AED] text-xs font-semibold hover:text-[#9f6ef5] transition-colors" style={{ fontFamily: "Inter, sans-serif" }}>
           Ver todas <ChevronRight size={12} />
         </button>
@@ -293,10 +249,11 @@ function TracksSection() {
 }
 
 function BadgesSection({ onBadgeClick }: { onBadgeClick: (id: number) => void }) {
+  const t = useLabiaTheme();
   return (
     <motion.div className="mx-5 mt-5" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.6 }}>
       <div className="flex items-center justify-between mb-3">
-        <p className="text-white/60 text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Minhas insígnias</p>
+        <p className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: t.textSecondary }}>Minhas insígnias</p>
       </div>
       <div className="labia-card p-4">
         <div className="flex items-center justify-between">
@@ -304,16 +261,16 @@ function BadgesSection({ onBadgeClick }: { onBadgeClick: (id: number) => void })
             const Icon = ICON_MAP[badge.icon] || Brain;
             return (
               <motion.button key={badge.id} onClick={() => onBadgeClick(badge.id)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-1.5" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.65 + i * 0.07 }}>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center relative" style={{ background: badge.earned ? `${badge.color}25` : "rgba(255,255,255,0.05)", border: `2px solid ${badge.earned ? badge.color : "rgba(255,255,255,0.1)"}`, boxShadow: badge.earned ? `0 0 12px ${badge.color}40` : "none" }}>
-                  <Icon size={20} style={{ color: badge.earned ? badge.color : "rgba(255,255,255,0.2)" }} />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center relative" style={{ background: badge.earned ? `${badge.color}25` : (t.isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"), border: `2px solid ${badge.earned ? badge.color : (t.isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)")}`, boxShadow: badge.earned ? `0 0 12px ${badge.color}40` : "none" }}>
+                  <Icon size={20} style={{ color: badge.earned ? badge.color : t.textMuted }} />
                   {!badge.earned && badge.progress && (
                     <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 48 48">
                       <circle cx="24" cy="24" r="22" fill="none" stroke={badge.color} strokeWidth="2.5" strokeDasharray={`${(badge.progress / 100) * 138.2} 138.2`} strokeLinecap="round" opacity="0.7" />
                     </svg>
                   )}
-                  {!badge.earned && !badge.progress && <Lock size={10} className="absolute bottom-0.5 right-0.5 text-white/30" />}
+                  {!badge.earned && !badge.progress && <Lock size={10} className="absolute bottom-0.5 right-0.5" style={{ color: t.textMuted }} />}
                 </div>
-                <span className="text-center text-[9px] leading-tight max-w-[52px]" style={{ fontFamily: "Inter, sans-serif", color: badge.earned ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.25)" }}>
+                <span className="text-center text-[9px] leading-tight max-w-[52px]" style={{ fontFamily: "Inter, sans-serif", color: badge.earned ? t.textSecondary : t.textMuted }}>
                   {badge.label}
                 </span>
               </motion.button>
