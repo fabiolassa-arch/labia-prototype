@@ -427,7 +427,7 @@ export default function Configuracoes() {
               icon={FileText}
               label="Termos de uso"
               iconColor="rgba(255,255,255,0.4)"
-              onClick={() => toast("Termos de uso (protótipo)")}
+              onClick={() => setLocation("/termos-de-uso")}
             >
               <ExternalLink size={14} className="text-white/20" />
             </SettingRow>
@@ -435,7 +435,7 @@ export default function Configuracoes() {
               icon={Shield}
               label="Política de privacidade"
               iconColor="rgba(255,255,255,0.4)"
-              onClick={() => toast("Política de privacidade (protótipo)")}
+              onClick={() => setLocation("/politica-privacidade")}
             >
               <ExternalLink size={14} className="text-white/20" />
             </SettingRow>
