@@ -28,6 +28,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import Login from "./pages/Login";
 import EsqueciSenha from "./pages/EsqueciSenha";
 import AjudaSuporte from "./pages/AjudaSuporte";
+import { TutorialProvider } from "./components/TutorialOverlay";
 
 function Router() {
   return (
@@ -64,10 +65,12 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <TutorialProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </TutorialProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

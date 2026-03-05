@@ -3,10 +3,12 @@
  * Design: Grid 2x2 de cards de trilhas com progresso, badges e status
  */
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { Brain, MessageSquare, Settings, Rocket, Lock, Star, CheckCircle2 } from "lucide-react";
 import { TRACKS } from "@/data";
+import { useTutorial, TUTORIAL_STEPS } from "@/components/TutorialOverlay";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 import ProgressBar from "@/components/ProgressBar";
@@ -107,6 +109,15 @@ function TrackCardLarge({ track, index }: { track: typeof TRACKS[0]; index: numb
 }
 
 export default function Trilhas() {
+  const { startTutorial } = useTutorial();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startTutorial("Trilhas", TUTORIAL_STEPS.Trilhas);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <PhoneFrame>
       <div className="flex-1 overflow-y-auto pb-2" style={{ scrollbarWidth: "none" }}>

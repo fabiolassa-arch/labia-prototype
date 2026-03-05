@@ -4,7 +4,7 @@
  * alterar senha, grid de stats, insígnias, configurações, botão sair
  */
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import {
@@ -13,6 +13,7 @@ import {
   Brain, MessageSquare, Settings,
 } from "lucide-react";
 import { IMAGES, USER_PROFILE, BADGES } from "@/data";
+import { useTutorial, TUTORIAL_STEPS } from "@/components/TutorialOverlay";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 import BadgeModal from "@/components/BadgeModal";
@@ -303,6 +304,14 @@ export default function Perfil() {
   const [, setLocation] = useLocation();
   const [showDados, setShowDados] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
+  const { startTutorial } = useTutorial();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startTutorial("Perfil", TUTORIAL_STEPS.Perfil);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <PhoneFrame>

@@ -4,16 +4,25 @@
  * rating com estrelas, botão "Entregar missão", input de texto
  */
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { Settings, Send, CheckCircle2, Star } from "lucide-react";
 import { IMAGES } from "@/data";
+import { useTutorial, TUTORIAL_STEPS } from "@/components/TutorialOverlay";
 import PhoneFrame from "@/components/PhoneFrame";
 
 export default function ChatIA() {
   const [, setLocation] = useLocation();
   const [inputText, setInputText] = useState("");
+  const { startTutorial } = useTutorial();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startTutorial("Chat IA", TUTORIAL_STEPS["Chat IA"]);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <PhoneFrame>

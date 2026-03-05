@@ -5,7 +5,7 @@
  * Fonte: Nunito (headings) + Inter (body)
  */
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import {
@@ -14,6 +14,7 @@ import {
   Gift, Sparkles, X,
 } from "lucide-react";
 import { IMAGES, TRACKS, BADGES } from "@/data";
+import { useTutorial, TUTORIAL_STEPS } from "@/components/TutorialOverlay";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 import ProgressBar from "@/components/ProgressBar";
@@ -326,6 +327,15 @@ function BadgesSection({ onBadgeClick }: { onBadgeClick: (id: number) => void })
 
 export default function Home() {
   const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
+  const { startTutorial } = useTutorial();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startTutorial("Home", TUTORIAL_STEPS.Home);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <PhoneFrame>
       <div className="flex-1 overflow-y-auto pb-2" style={{ scrollbarWidth: "none" }}>

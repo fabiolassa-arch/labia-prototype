@@ -15,6 +15,8 @@ import {
   MessageSquare, Award, Zap, Mail, ExternalLink, Heart,
 } from "lucide-react";
 import { IMAGES } from "@/data";
+import { useTutorial } from "@/components/TutorialOverlay";
+import { GraduationCap } from "lucide-react";
 import PhoneFrame from "@/components/PhoneFrame";
 import BottomNav from "@/components/BottomNav";
 
@@ -172,6 +174,7 @@ function SelectOption({
 /* ─── Main Page ─── */
 export default function Configuracoes() {
   const [, setLocation] = useLocation();
+  const { resetTutorials } = useTutorial();
 
   // Notification settings
   const [notifMissoes, setNotifMissoes] = useState(true);
@@ -444,9 +447,21 @@ export default function Configuracoes() {
               label="Central de ajuda"
               iconColor="rgba(255,255,255,0.4)"
               onClick={() => setLocation("/ajuda")}
-              isLast
             >
               <ExternalLink size={14} className="text-white/20" />
+            </SettingRow>
+            <SettingRow
+              icon={GraduationCap}
+              label="Rever tutoriais"
+              description="Reexibir dicas interativas nas telas"
+              iconColor="#7C3AED"
+              onClick={() => {
+                resetTutorials();
+                toast.success("Tutoriais resetados! Visite as telas para revê-los.");
+              }}
+              isLast
+            >
+              <ChevronRight size={14} className="text-white/20" />
             </SettingRow>
           </div>
         </motion.div>
