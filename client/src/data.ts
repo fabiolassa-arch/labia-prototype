@@ -9,6 +9,104 @@ export const IMAGES = {
   logoWhite: "https://d2xsxph8kpxj0f.cloudfront.net/310519663095527403/9MQHs5b376g4jRiSDo79nL/labia-logo-white-v3_dce4300f.png",
 };
 
+export type NotificationType = "conquista" | "lembrete" | "sistema" | "social";
+
+export interface Notification {
+  id: number;
+  type: NotificationType;
+  title: string;
+  message: string;
+  time: string;
+  read: boolean;
+  icon: string;
+  color: string;
+  action?: string;
+  actionRoute?: string;
+}
+
+export const NOTIFICATIONS: Notification[] = [
+  {
+    id: 1,
+    type: "conquista",
+    title: "Insígnia Conquistada!",
+    message: 'Parabéns! Você conquistou a insígnia "Explorador de IA" ao completar a trilha Entendendo a IA.',
+    time: "Agora mesmo",
+    read: false,
+    icon: "Trophy",
+    color: "#10B981",
+    action: "Ver insígnia",
+    actionRoute: "/portfolio",
+  },
+  {
+    id: 2,
+    type: "lembrete",
+    title: "Missão pendente",
+    message: 'Você está quase lá! Continue a missão "Estruture um prompt eficiente" na trilha Criando Prompts.',
+    time: "2h atrás",
+    read: false,
+    icon: "Clock",
+    color: "#F97316",
+    action: "Continuar missão",
+    actionRoute: "/trilha-detalhe",
+  },
+  {
+    id: 3,
+    type: "conquista",
+    title: "Nota máxima!",
+    message: 'Você tirou 10/10 na missão "O que é Inteligência Artificial?". Compartilhe com seus amigos!',
+    time: "5h atrás",
+    read: false,
+    icon: "Star",
+    color: "#F59E0B",
+    action: "Revisar missão",
+    actionRoute: "/missao/entendendo/1",
+  },
+  {
+    id: 4,
+    type: "sistema",
+    title: "Nova trilha disponível!",
+    message: 'A trilha "Criando Prompts" foi desbloqueada. Comece agora e aprenda a fazer perguntas poderosas para a IA!',
+    time: "1 dia atrás",
+    read: true,
+    icon: "Unlock",
+    color: "#7C3AED",
+    action: "Iniciar trilha",
+    actionRoute: "/trilha-detalhe",
+  },
+  {
+    id: 5,
+    type: "lembrete",
+    title: "Sequência de 3 dias!",
+    message: "Você está em uma sequência de 3 dias consecutivos! Continue estudando para não perder o ritmo.",
+    time: "1 dia atrás",
+    read: true,
+    icon: "Flame",
+    color: "#EF4444",
+  },
+  {
+    id: 6,
+    type: "social",
+    title: "Seu amigo completou uma trilha",
+    message: 'Maria Silva completou a trilha "Entendendo a IA". Envie uma mensagem de parabéns!',
+    time: "2 dias atrás",
+    read: true,
+    icon: "Users",
+    color: "#06B6D4",
+  },
+  {
+    id: 7,
+    type: "sistema",
+    title: "Bem-vindo ao LabIA!",
+    message: "Sua jornada na Inteligência Artificial começa agora. Explore a primeira trilha e descubra o mundo da IA!",
+    time: "3 dias atrás",
+    read: true,
+    icon: "Sparkles",
+    color: "#8B5CF6",
+    action: "Começar",
+    actionRoute: "/trilha-entendendo-ia",
+  },
+];
+
 export const TRACKS = [
   {
     id: 1,

@@ -44,11 +44,11 @@ function Header() {
         </div>
       </div>
       <button
-        onClick={() => toast("Você tem 2 novas notificações!")}
+        onClick={() => setLocation("/notificacoes")}
         className="relative w-10 h-10 rounded-full bg-white/8 flex items-center justify-center hover:bg-white/15 transition-colors"
       >
         <Bell size={18} className="text-white/70" />
-        <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F97316] rounded-full" />
+        <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F97316] rounded-full animate-pulse" />
       </button>
     </motion.div>
   );
