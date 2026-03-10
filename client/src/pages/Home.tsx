@@ -241,7 +241,7 @@ function EnsinoMedioBanner() {
       transition={{ duration: 0.4, delay: 0.45 }}
     >
       <motion.button
-        onClick={() => setLocation("/ensino-medio")}
+        onClick={() => setLocation("/home-em")}
         className="w-full relative overflow-hidden rounded-2xl p-4 text-left"
         style={{ background: "linear-gradient(135deg, #7C3AED 0%, #F97316 100%)" }}
         whileTap={{ scale: 0.98 }}

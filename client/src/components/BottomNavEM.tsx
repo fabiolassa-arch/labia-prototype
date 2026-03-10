@@ -9,7 +9,7 @@ import { useLocation } from "wouter";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const NAV_ITEMS = [
-  { icon: Home, label: "Início", path: "/ensino-medio" },
+  { icon: Home, label: "Início", path: "/home-em" },
   { icon: Brain, label: "Tutor IA", path: "/tutor-ia" },
   { icon: Zap, label: "Desafio", path: "/desafio-do-dia" },
   { icon: FileText, label: "Redação", path: "/redacao-enem" },

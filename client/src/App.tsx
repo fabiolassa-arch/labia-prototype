@@ -31,6 +31,7 @@ import AjudaSuporte from "./pages/AjudaSuporte";
 import { TutorialProvider } from "./components/TutorialOverlay";
 
 // Ensino Médio — Novas telas
+import HomeEM from "./pages/HomeEM";
 import EnsinoMedio from "./pages/EnsinoMedio";
 import TutorIA from "./pages/TutorIA";
 import DesafioDoDia from "./pages/DesafioDoDia";
@@ -64,6 +65,7 @@ function Router() {
       <Route path="/perfil" component={Perfil} />
       <Route path="/portfolio" component={Portfolio} />
       {/* Ensino Médio */}
+      <Route path="/home-em" component={HomeEM} />
       <Route path="/ensino-medio" component={EnsinoMedio} />
       <Route path="/tutor-ia" component={TutorIA} />
       <Route path="/desafio-do-dia" component={DesafioDoDia} />
