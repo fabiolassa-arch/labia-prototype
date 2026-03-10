@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router as WouterRouter } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -78,6 +78,8 @@ function Router() {
   );
 }
 
+const BASE_PATH = import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
+
 function App() {
   return (
     <ErrorBoundary>
@@ -85,7 +87,9 @@ function App() {
         <TutorialProvider>
           <TooltipProvider>
             <Toaster />
-            <Router />
+            <WouterRouter base={BASE_PATH}>
+              <Router />
+            </WouterRouter>
           </TooltipProvider>
         </TutorialProvider>
       </ThemeProvider>
