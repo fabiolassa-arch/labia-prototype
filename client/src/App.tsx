@@ -30,6 +30,14 @@ import EsqueciSenha from "./pages/EsqueciSenha";
 import AjudaSuporte from "./pages/AjudaSuporte";
 import { TutorialProvider } from "./components/TutorialOverlay";
 
+// Ensino Médio — Novas telas
+import EnsinoMedio from "./pages/EnsinoMedio";
+import TutorIA from "./pages/TutorIA";
+import DesafioDoDia from "./pages/DesafioDoDia";
+import RedacaoENEM from "./pages/RedacaoENEM";
+import PlanoDeEstudos from "./pages/PlanoDeEstudos";
+import ProgressoEM from "./pages/ProgressoEM";
+
 function Router() {
   return (
     <Switch>
@@ -55,6 +63,13 @@ function Router() {
       <Route path="/builder" component={Builder} />
       <Route path="/perfil" component={Perfil} />
       <Route path="/portfolio" component={Portfolio} />
+      {/* Ensino Médio */}
+      <Route path="/ensino-medio" component={EnsinoMedio} />
+      <Route path="/tutor-ia" component={TutorIA} />
+      <Route path="/desafio-do-dia" component={DesafioDoDia} />
+      <Route path="/redacao-enem" component={RedacaoENEM} />
+      <Route path="/plano-de-estudos" component={PlanoDeEstudos} />
+      <Route path="/progresso-em" component={ProgressoEM} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

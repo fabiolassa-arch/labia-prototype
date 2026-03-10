@@ -230,6 +230,48 @@ function TrackCard({ track, index }: { track: typeof TRACKS[0]; index: number })
   );
 }
 
+function EnsinoMedioBanner() {
+  const [, setLocation] = useLocation();
+  const t = useLabiaTheme();
+  return (
+    <motion.div
+      className="mx-5 mt-5"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.45 }}
+    >
+      <motion.button
+        onClick={() => setLocation("/ensino-medio")}
+        className="w-full relative overflow-hidden rounded-2xl p-4 text-left"
+        style={{ background: "linear-gradient(135deg, #7C3AED 0%, #F97316 100%)" }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="absolute top-0 right-0 w-28 h-28 rounded-full opacity-15" style={{ background: "white", transform: "translate(30%, -30%)" }} />
+        <div className="relative flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-1.5 mb-1">
+              <span className="text-white/80 text-[10px] font-bold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Novo</span>
+              <span className="w-1 h-1 rounded-full bg-white/50" />
+              <span className="text-white/80 text-[10px]" style={{ fontFamily: "Inter, sans-serif" }}>Módulo disponível</span>
+            </div>
+            <p className="text-white font-black text-base leading-tight" style={{ fontFamily: "Nunito, sans-serif" }}>
+              Ensino Médio
+            </p>
+            <p className="text-white/75 text-xs mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
+              Tutor IA · Desafios · Redação ENEM
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
+              <ChevronRight size={18} className="text-white" />
+            </div>
+          </div>
+        </div>
+      </motion.button>
+    </motion.div>
+  );
+}
+
 function TracksSection() {
   const [, setLocation] = useLocation();
   const t = useLabiaTheme();
@@ -301,6 +343,7 @@ export default function Home() {
         <JourneyProgress />
         <ActiveMission />
         <TracksSection />
+        <EnsinoMedioBanner />
         <BadgesSection onBadgeClick={(id) => setSelectedBadge(id)} />
         <div className="h-4" />
       </div>
