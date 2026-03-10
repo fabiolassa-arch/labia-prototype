@@ -152,7 +152,10 @@ function vitePluginManusDebugCollector(): Plugin {
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
+const isPagesBuild = process.env.PAGES_BUILD === "true";
+
 export default defineConfig({
+  base: isPagesBuild ? "/labia-prototype/" : "/",
   plugins,
   resolve: {
     alias: {
